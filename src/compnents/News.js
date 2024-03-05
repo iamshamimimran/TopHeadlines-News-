@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem';
+import Loading from './Loading';
 export default class News extends Component {
 
     constructor(){
@@ -48,6 +49,7 @@ export default class News extends Component {
   render() {
     return (
         <div className="container my-5">
+          <Loading/>
       <div className='row'>
         {this.state.articles.map((element)=>{
             return <div className="col-md-3" key={element.url}>
@@ -57,7 +59,7 @@ export default class News extends Component {
       </div>
       <div className='d-flex justify-content-between my-2'>
   <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePre}>&larr; Previous</button>
-  <button type="button" className="btn btn-dark" onClick={this.handleNxt}>Next &rarr;</button>
+  <button disabled={this.state.page + 1>this.state.totalResults/9} type="button" className="btn btn-dark" onClick={this.handleNxt}>Next &rarr;</button>
   </div>
         </div>
 
