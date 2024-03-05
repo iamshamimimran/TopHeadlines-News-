@@ -14,34 +14,37 @@ export default class News extends Component {
 
     async componentDidMount(){
         let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=98e9ffce75414c09b3936d2dcb39f79d&page=1&pageSize=8";
+        this.setState({loading:true}) ;
         let data = await fetch(url);
         let parseData = await data.json()
         console.log("ParseData");
-        this.setState({articles: parseData.articles, totalResults:parseData.totalResults})
+        this.setState({articles: parseData.articles, totalResults:parseData.totalResults,loading:false})
         
     }
     handlePre = async ()=>{
       console.log("Previous");
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=98e9ffce75414c09b3936d2dcb39f79d&page=${this.state.page - 1}&pageSize=8`;
-        let data = await fetch(url);
+      this.setState({loading:true}) ;   
+      let data = await fetch(url);
         let parseData = await data.json()
         this.setState({
           page: this.state.page - 1,
-        articles: parseData.articles
+        articles: parseData.articles,
+        loading:false
         })
     }
     handleNxt = async ()=>{
       console.log("Next");
-      if(Math.ceil(this.state.page + 1>this.state.totalResults/9)){
-
-      }
-      else{
+      if(!(Math.ceil(this.state.page + 1>this.state.totalResults/9))){
+ 
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=98e9ffce75414c09b3936d2dcb39f79d&page=${this.state.page + 1}&pageSize=8`;
-        let data = await fetch(url);
+      this.setState({loading:true}) ; 
+      let data = await fetch(url);
         let parseData = await data.json()
         this.setState({
           page:this.state.page + 1,
-          articles: parseData.articles
+          articles: parseData.articles,
+          loading:false
         })
       }
     }
@@ -49,9 +52,9 @@ export default class News extends Component {
   render() {
     return (
         <div className="container my-5">
-          <Loading/>
+          {this.state.loading && <Loading/>}
       <div className='row'>
-        {this.state.articles.map((element)=>{
+        {!this.state.loading && this.state.articles.map((element)=>{
             return <div className="col-md-3" key={element.url}>
             <NewsItem title={element.title?element.title:""} description={element.description?element.description:""} imgUrl={element.urlToImage} linkUrl={element.url}/>
           </div>
