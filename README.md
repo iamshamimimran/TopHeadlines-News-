@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+# Create Your Own apiKey From [NEWS API](https://newsapi.org/)
+
+# Create a file .env.local & Create a Variable Named --> REACT_APP_API_KEY:"Insert Your ApiKey"
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

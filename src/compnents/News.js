@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 export default class News extends Component {
 
-
   static defaultProps = {
     category: 'general',
   }
@@ -24,7 +23,7 @@ export default class News extends Component {
     }
 
     async componentDidMount(){
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=98e9ffce75414c09b3936d2dcb39f79d&page=1&pageSize=8`;
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=${this.props.apiKey}&page=1&pageSize=8`;
         this.setState({loading:true}) ;
         let data = await fetch(url);
         let parseData = await data.json()
@@ -34,7 +33,7 @@ export default class News extends Component {
     }
     handlePre = async ()=>{
       console.log("Previous");
-      let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=98e9ffce75414c09b3936d2dcb39f79d&page=${this.state.page-1}&pageSize=8`;
+      let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page-1}&pageSize=8`;
       this.setState({loading:true}) ;   
       let data = await fetch(url);
         let parseData = await data.json()
@@ -48,7 +47,7 @@ export default class News extends Component {
       console.log("Next");
       if(!(Math.ceil(this.state.page + 1>this.state.totalResults/9))){
  
-      let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=98e9ffce75414c09b3936d2dcb39f79d&page=${this.state.page+1}&pageSize=8`;
+      let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page+1}&pageSize=8`;
       this.setState({loading:true}) ; 
       let data = await fetch(url);
         let parseData = await data.json()
