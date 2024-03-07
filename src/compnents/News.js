@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem';
 import Loading from './Loading';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export default class News extends Component {
 
@@ -13,13 +13,14 @@ export default class News extends Component {
     category: PropTypes.string
   }
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             articles : [],
             loading: false,
             page: 1
         }
+        
     }
 
     async componentDidMount(){
@@ -66,7 +67,7 @@ export default class News extends Component {
       <div className='row'>
         {!this.state.loading && this.state.articles.map((element)=>{
             return <div className="col-md-3" key={element.url}>
-            <NewsItem title={element.title?element.title:""} description={element.description?element.description:""} imgUrl={element.urlToImage} linkUrl={element.url}/>
+            <NewsItem title={element.title?element.title:""} description={element.description?element.description:""} imgUrl={element.urlToImage} linkUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
           </div>
         })}
       </div>

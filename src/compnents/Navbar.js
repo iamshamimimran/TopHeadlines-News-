@@ -32,6 +32,11 @@ export default class Navbar extends Component {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <Link class="nav-link active" aria-current="page" to="/general">
+                  General
+                  </Link>
+                </li>  
                 <li class="nav-item">
                   <Link class="nav-link active" aria-current="page" to="/business">
                     Business
@@ -41,11 +46,7 @@ export default class Navbar extends Component {
                   <Link class="nav-link active" aria-current="page" to="/entertainment">
                   Entertainment
                   </Link>
-                </li>  <li class="nav-item">
-                  <Link class="nav-link active" aria-current="page" to="/general">
-                  General
-                  </Link>
-                </li>  <li class="nav-item">
+                </li> <li class="nav-item">
                   <Link class="nav-link active" aria-current="page" to="/health">
                   Health
                   </Link>
@@ -64,19 +65,7 @@ export default class Navbar extends Component {
                   Technology
                   </Link>
                 </li>
-
               </ul>
-              <form class="d-flex">
-                <input
-                  class="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button class="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
             </div>
           </div>
         </nav>
